@@ -1,9 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
-	hello := "hello world"
+	hello := "hello woRld COMputER"
 	convert := []rune(hello)
 	var slice []string
 	var tmp []rune
@@ -11,14 +14,14 @@ func main() {
 		fmt.Printf("current value: %c\n", value)
 		if value == 32 {
 			conversion := string(tmp)
-			slice = append(slice, conversion)
+			slice = append(slice, strings.ToLower(conversion))
 			tmp = nil
 			continue
 		}
 		tmp = append(tmp, value)
 		if index == len(hello)-1 {
 			conversion := string(tmp)
-			slice = append(slice, conversion)
+			slice = append(slice, strings.ToLower(conversion))
 		}
 	}
 	fmt.Println(slice)
