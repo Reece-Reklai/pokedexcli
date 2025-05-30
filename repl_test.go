@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 	"testing"
 )
@@ -56,6 +55,5 @@ func cleanInput(s string) []string {
 		}
 		tmp = append(tmp, value)
 	}
-	fmt.Println(slice)
 	return slice
 }
