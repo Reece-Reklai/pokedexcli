@@ -8,6 +8,10 @@ func CleanInput(s string) []string {
 	convert := []rune(s)
 	var slice []string
 	var tmp []rune
+	if len(s) == 1 {
+		slice = append(slice, strings.ToLower(s))
+		return slice
+	}
 	for index, value := range convert {
 		if index == 0 {
 			if value != 32 {
@@ -22,6 +26,14 @@ func CleanInput(s string) []string {
 				tmp = nil
 			}
 			continue
+		}
+		if index == len(s)-1 {
+			if tmp != nil {
+				tmp = append(tmp, value)
+				conversion := string(tmp)
+				slice = append(slice, strings.ToLower(conversion))
+				tmp = nil
+			}
 		}
 		tmp = append(tmp, value)
 	}
