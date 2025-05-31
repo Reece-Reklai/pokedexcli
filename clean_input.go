@@ -8,6 +8,9 @@ func CleanInput(s string) []string {
 	convert := []rune(s)
 	var slice []string
 	var tmp []rune
+	if s == "" {
+		return nil
+	}
 	if len(s) == 1 {
 		slice = append(slice, strings.ToLower(s))
 		return slice
