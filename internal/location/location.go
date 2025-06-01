@@ -17,7 +17,7 @@ type Location struct {
 }
 
 func (location *Location) Location() error {
-	res, err := http.Get("https://pokeapi.co/api/v2/location/")
+	res, err := http.Get("https://pokeapi.co/api/v2/location-area/")
 	if err != nil {
 		err = errors.New("Failed get general location request")
 	}
