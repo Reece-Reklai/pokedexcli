@@ -38,20 +38,6 @@ func main() {
 				}
 			},
 		},
-		"nmap": {
-			name:        "nmap",
-			description: "Displays the next location",
-			callback: func() {
-				err := current.next()
-				if err != nil {
-					fmt.Printf("Error from parsing next location: %v\n", err)
-				}
-				for _, value := range current.Results {
-					fmt.Println(value.Name)
-				}
-			},
-		},
-
 		"nmapb": {
 			name:        "nmapb",
 			description: "Displays the previous location",
@@ -65,10 +51,23 @@ func main() {
 				}
 			},
 		},
+		"nmap": {
+			name:        "nmap",
+			description: "Displays the next location",
+			callback: func() {
+				err := current.next()
+				if err != nil {
+					fmt.Printf("Error from parsing next location: %v\n", err)
+				}
+				for _, value := range current.Results {
+					fmt.Println(value.Name)
+				}
+			},
+		},
 	}
 	scanned_input := bufio.NewScanner(os.Stdin)
 	for {
-		fmt.Print("Pokedex > ")
+		fmt.Print("Pokedex >>>>>>>>>>>>>>>>> ")
 		scanned_input.Scan()
 		text := scanned_input.Text()
 		clean := CleanInput(text)
@@ -79,7 +78,26 @@ func main() {
 		if ok == false {
 			fmt.Println("Unknown Command")
 		} else {
-			command.callback()
+			switch command.name {
+			case "exit":
+				command.callback()
+			case "help":
+				command.callback()
+			case "map":
+				command.callback()
+			case "nmapb":
+				if current.Previous == nil {
+					fmt.Println("There are no known locations in the previous map")
+					continue
+				}
+				command.callback()
+			case "nmap":
+				if current.Next == nil {
+					fmt.Println("There are no known locations in the next map")
+					continue
+				}
+				command.callback()
+			}
 		}
 	}
 }
