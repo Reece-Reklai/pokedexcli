@@ -3,6 +3,8 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"github.com/Reece-Reklai/pokedexcli/internal/location"
+	"github.com/Reece-Reklai/pokedexcli/test"
 	"os"
 )
 
@@ -13,8 +15,8 @@ type cliCommand struct {
 }
 
 func main() {
-	var current Location
-	err := current.location()
+	var current location.Location
+	err := current.Location()
 	if err != nil {
 		fmt.Printf("Error from parsing current location: %v\n", err)
 	}
@@ -42,7 +44,7 @@ func main() {
 			name:        "nmapb",
 			description: "Displays the previous location",
 			callback: func() {
-				err := current.prev()
+				err := current.Prev_map()
 				if err != nil {
 					fmt.Printf("Error from parsing previous location: %v\n", err)
 				}
@@ -55,7 +57,7 @@ func main() {
 			name:        "nmap",
 			description: "Displays the next location",
 			callback: func() {
-				err := current.next()
+				err := current.Next_map()
 				if err != nil {
 					fmt.Printf("Error from parsing next location: %v\n", err)
 				}
@@ -70,7 +72,7 @@ func main() {
 		fmt.Print("Pokedex >>>>>>>>>>>>>>>>> ")
 		scanned_input.Scan()
 		text := scanned_input.Text()
-		clean := CleanInput(text)
+		clean := test.CleanInput(text)
 		if clean == nil {
 			continue
 		}

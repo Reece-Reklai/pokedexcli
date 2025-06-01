@@ -1,4 +1,4 @@
-package main
+package location
 
 import (
 	"encoding/json"
@@ -16,7 +16,7 @@ type Location struct {
 	} `json:"results"`
 }
 
-func (location *Location) location() error {
+func (location *Location) Location() error {
 	res, err := http.Get("https://pokeapi.co/api/v2/location/")
 	if err != nil {
 		err = errors.New("Failed get general location request")
@@ -28,7 +28,7 @@ func (location *Location) location() error {
 	return err
 }
 
-func (location *Location) prev() error {
+func (location *Location) Prev_map() error {
 	res, err := http.Get(*location.Previous)
 	if err != nil {
 		err = errors.New("Failed get general location request")
@@ -40,7 +40,7 @@ func (location *Location) prev() error {
 	return err
 }
 
-func (location *Location) next() error {
+func (location *Location) Next_map() error {
 	res, err := http.Get(*location.Next)
 	if err != nil {
 		err = errors.New("Failed get general location request")
