@@ -2,17 +2,23 @@ package test
 
 import (
 	"strings"
+	"unicode"
 )
 
-func CleanInput(s string) []string {
-	convert := []rune(s)
+func CleanInput(test string) []string {
+	for _, value := range test {
+		if unicode.IsDigit(value) == true {
+			return nil
+		}
+	}
+	convert := []rune(test)
 	var slice []string
 	var tmp []rune
-	if s == "" {
+	if test == "" {
 		return nil
 	}
-	if len(s) == 1 {
-		slice = append(slice, strings.ToLower(s))
+	if len(test) == 1 {
+		slice = append(slice, strings.ToLower(test))
 		return slice
 	}
 	for index, value := range convert {
@@ -30,7 +36,7 @@ func CleanInput(s string) []string {
 			}
 			continue
 		}
-		if index == len(s)-1 {
+		if index == len(test)-1 {
 			if tmp != nil {
 				tmp = append(tmp, value)
 				conversion := string(tmp)

@@ -10,8 +10,8 @@ func TestCase(t *testing.T) {
 		expected []string
 	}{
 		{
-			input:    "  hello  world  ",
-			expected: []string{"hello", "world"},
+			input:    "  hello  w  ",
+			expected: []string{"hello", "w"},
 		},
 		// add more cases here
 	}
