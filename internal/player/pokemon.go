@@ -1,10 +1,6 @@
-package catch
+package player
 
-import (
-	"encoding/json"
-	"errors"
-	"net/http"
-)
+import ()
 
 type Pokemon struct {
 	ID             int    `json:"id"`
@@ -288,16 +284,4 @@ type Pokemon struct {
 			Slot     int  `json:"slot"`
 		} `json:"abilities"`
 	} `json:"past_abilities"`
-}
-
-func (catch *Pokemon) Catch(name string) (err error) {
-	res, err := http.Get("https://pokeapi.co/api/v2/pokemon/" + name)
-	if err != nil {
-		err = errors.New("Unable to recieve Pokemon Information")
-	}
-	err = json.NewDecoder(res.Body).Decode(&catch)
-	if err != nil {
-		err = errors.New("Failed to unmarshal json")
-	}
-	return err
 }

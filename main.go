@@ -6,9 +6,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/Reece-Reklai/pokedexcli/internal/catch"
 	"github.com/Reece-Reklai/pokedexcli/internal/explore"
 	"github.com/Reece-Reklai/pokedexcli/internal/location"
+	"github.com/Reece-Reklai/pokedexcli/internal/player"
 	"github.com/Reece-Reklai/pokedexcli/internal/pokecache"
 	"github.com/Reece-Reklai/pokedexcli/test"
 )
@@ -22,9 +22,10 @@ type cliCommand struct {
 func main() {
 	var current location.Location
 	var encounter explore.Explore
-	var capture catch.Pokemon
+	var player player.Player
 	var locationArea string
 	var pokemon string
+	var inspect string
 	err := current.Location()
 	if err != nil {
 		fmt.Printf("Error from parsing current location: %v\n", err)
@@ -51,15 +52,54 @@ func main() {
 				}
 			},
 		},
+		"pokedex": {
+			name:        "pokedex",
+			description: "What is currently within the pokedex",
+			callback: func() {
+				if player.Pokedex == nil {
+					fmt.Println("Pokedex is empty!")
+				} else {
+					for _, value := range player.Pokedex {
+						fmt.Printf("- %s\n", value.Name)
+					}
+				}
+			},
+		},
+		"inspect": {
+			name:        "inspect",
+			description: "Inspect pokemon within your own pokedex",
+			callback: func() {
+				stats := []string{"hp", "attack", "defense", "special-attack", "special-defense", "speed"}
+				if player.Pokedex == nil {
+					fmt.Println("Pokedex is empty!")
+				} else {
+					exist, ok := player.Pokedex[inspect]
+					if ok == true {
+						fmt.Printf("Name: %s\n", exist.Name)
+						fmt.Printf("Height: %d\n", exist.Height)
+						fmt.Printf("Weight: %d\n", exist.Weight)
+						fmt.Println("Stats:")
+						counter := 0
+						for _, value := range exist.Stats {
+							fmt.Printf("- %s: %v\n", stats[counter], value.BaseStat)
+							counter += 1
+						}
+						fmt.Println("Types")
+						for _, value := range exist.Types {
+							fmt.Printf("- %v\n", value.Type.Name)
+						}
+					}
+				}
+			},
+		},
 		"catch": {
 			name:        "catch",
 			description: "Attempt to catch pokemon",
 			callback: func() {
-				err := capture.Catch(pokemon)
+				err := player.Catch(pokemon)
 				if err != nil {
 					fmt.Println(err)
 				}
-				fmt.Println(capture.Name)
 			},
 		},
 		"explore": {
@@ -213,6 +253,20 @@ func main() {
 					continue
 				} else {
 					pokemon = clean[1]
+					command.callback()
+				}
+			case "inspect":
+				if len(clean) != 2 {
+					fmt.Println("Require Two Arguments (Unsupported Digit and Single Characters)")
+					continue
+				} else {
+					inspect = clean[1]
+					command.callback()
+				}
+			case "pokedex":
+				if len(clean) != 1 {
+					fmt.Println("Unknown Command")
+				} else {
 					command.callback()
 				}
 			}

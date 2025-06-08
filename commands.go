@@ -19,6 +19,9 @@ func commandHelp() {
 	fmt.Println("nmap: The Next Locations")
 	fmt.Println("nmapb: The Prev Locations")
 	fmt.Println("explore: Pokemon encountered in location-area")
+	fmt.Println("catch: Throw a Pokeball at a Pokemon")
+	fmt.Println("inspect: Inspect Pokemon from Pokedex")
+	fmt.Println("pokedex: What is currently inside your Pokedex")
 	fmt.Println("exit: Exit the Pokedex")
 	return
 }
