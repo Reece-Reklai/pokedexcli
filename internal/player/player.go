@@ -30,18 +30,23 @@ func (caught *Player) Catch(name string) (err error) {
 	if err != nil {
 		err = errors.New("Pokemon does not exist")
 	} else {
-		fmt.Printf("Throwing a Pokeball at %s...\n", name)
-		verdict := attempt(pokemon)
-		if verdict == true {
-			fmt.Printf("%s was caught!\n", name)
-			if caught.Pokedex == nil {
-				caught.Pokedex = make(map[string]Pokemon)
-				caught.Pokedex[name] = pokemon
-			} else {
-				caught.Pokedex[name] = pokemon
-			}
+		_, ok := caught.Pokedex[name]
+		if ok == true {
+			fmt.Println("Pokemon already caught")
 		} else {
-			fmt.Printf("%s escaped!\n", name)
+			fmt.Printf("Throwing a Pokeball at %s...\n", name)
+			verdict := attempt(pokemon)
+			if verdict == true {
+				fmt.Printf("%s was caught!\n", name)
+				if caught.Pokedex == nil {
+					caught.Pokedex = make(map[string]Pokemon)
+					caught.Pokedex[name] = pokemon
+				} else {
+					caught.Pokedex[name] = pokemon
+				}
+			} else {
+				fmt.Printf("%s escaped!\n", name)
+			}
 		}
 	}
 	return err
