@@ -54,22 +54,6 @@ Once launched, you'll see the `Pokedex > ` prompt. Type commands to explore and 
 └── test/               # Testing utilities
 ```
 
-## Key Features
-
-- **Intelligent Caching**: Reduces API calls by caching location data and Pokémon encounters
-- **Error Handling**: Robust input validation and graceful error recovery
-- **Extensible Design**: Modular architecture for easy feature additions
-- **Real-time Data**: Live integration with comprehensive Pokémon database
-- **Clean CLI**: User-friendly interface with helpful error messages
-
-## Design Goals
-
-- **Language**: Go 1.24.3+
-- **API**: PokeAPI.co for comprehensive Pokémon data
-- **Architecture**: Clean separation of concerns with internal packages
-- **Concurrency**: Safe concurrent operations with mutex-protected caches
-- **Performance**: Optimized with configurable TTL caching
-
 ## Game Example
 
 ```
