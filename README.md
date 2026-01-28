@@ -2,10 +2,9 @@
 
 A command-line Pokémon adventure game built in Go. Explore the Pokémon world, catch Pokémon, and build your personal Pokédex through an interactive REPL interface.
 
-![Go](https://img.shields.io/badge/Go-1.24.3+-00ADD8?style=flat&logo=go)
-![License](https://img.shields.io/badge/License-MIT-blue.svg)
+![Go](https://img.shields.io/badge/Go-1.24.3+-00ADD8?style=flat&logo=go))
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Clone the repository
@@ -16,7 +15,7 @@ cd pokedexcli
 go run .
 ```
 
-## 🎮 How to Play
+## How to Play
 
 Once launched, you'll see the `Pokedex > ` prompt. Type commands to explore and interact:
 
@@ -35,7 +34,7 @@ Once launched, you'll see the `Pokedex > ` prompt. Type commands to explore and 
 ### Other
 - `exit` - Leave the Pokédex
 
-## 🏗️ Technical Architecture
+## Technical Architecture
 
 ### Core Components
 - **REPL Engine**: Interactive command-line interface with input validation
@@ -55,7 +54,7 @@ Once launched, you'll see the `Pokedex > ` prompt. Type commands to explore and 
 └── test/               # Testing utilities
 ```
 
-## 🎯 Key Features
+## Key Features
 
 - **Intelligent Caching**: Reduces API calls by caching location data and Pokémon encounters
 - **Error Handling**: Robust input validation and graceful error recovery
@@ -63,7 +62,7 @@ Once launched, you'll see the `Pokedex > ` prompt. Type commands to explore and 
 - **Real-time Data**: Live integration with comprehensive Pokémon database
 - **Clean CLI**: User-friendly interface with helpful error messages
 
-## 🔧 Technical Highlights
+## Design Goals
 
 - **Language**: Go 1.24.3+
 - **API**: PokeAPI.co for comprehensive Pokémon data
@@ -71,7 +70,7 @@ Once launched, you'll see the `Pokedex > ` prompt. Type commands to explore and 
 - **Concurrency**: Safe concurrent operations with mutex-protected caches
 - **Performance**: Optimized with configurable TTL caching
 
-## 📖 Example Gameplay
+## Game Example
 
 ```
 $ go run .
@@ -107,11 +106,3 @@ Pokedex > pokedex
 Pokedex > exit
 Closing the Pokedex... Goodbye!
 ```
-
-## 🤝 Contributing
-
-This project demonstrates clean Go development practices, modular architecture, and CLI application design. Feel free to explore the codebase or suggest improvements.
-
-## 📄 License
-
-This project is licensed under the MIT License.
